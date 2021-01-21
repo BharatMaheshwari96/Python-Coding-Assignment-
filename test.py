@@ -1,10 +1,35 @@
 from functools import reduce
-number = int(input("Enter the number of input:")) 
-for i in range(number):
-    s= input() # taking input values in string format
-    # If condition to check wheter the given input is size of 2 or not and print 0 if no input is given
-    if len(s.split()) == 2:
-        Sum = int(str(reduce(lambda x,y: x+y, map(int, [e[::-1] for e in s.split()])))[::-1])
-        print(Sum)
+def call(Input):
+    String = Input
+    Sum = int(str(reduce(lambda x,y: x+y, map(int, [e[::-1] for e in String.split()])))[::-1])
+    return Sum
+
+def Check(Input):
+    number = Input
+    if isinstance(number, int) == True:
+        if number <= 10000 and number > 0:
+            return Input
+        else:
+            print("Error: Out of Range")
+            return 0
     else:
-        print("0")
+        print("Error: Data-Type ")
+        return 0
+
+def main():
+    INPUT = input("Enter the count of input: ")
+    INPUT = Check(INPUT)
+    for i in range(INPUT):
+        value = input()
+        if len(value.split())==2:
+            Value = value.split()
+            if Value[0].isnumeric()== True and Value[1].isnumeric()== True:
+                Result = call(value)
+                print(Result)
+            else:
+                print("Error: Non-Positive Integer value")
+        else:
+            print("0")
+
+if __name__ == "__main__":
+    main()
